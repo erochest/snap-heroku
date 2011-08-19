@@ -65,8 +65,3 @@ task :chefst do
   end
 end
 
-desc 'Runs the snappy server.'
-task :serve do
-  sh "./snappy -p 80 +RTS -N4"
-end
-

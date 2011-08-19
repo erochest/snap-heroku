@@ -1,1 +1,1 @@
-web: rake serve
+web: rake -f Rakefile.snappy serve
