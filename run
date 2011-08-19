@@ -1,2 +1,2 @@
-#!/usr/sh
+#!/bin/sh
 ./snappy -p 80 +RTS -N4
