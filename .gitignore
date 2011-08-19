@@ -1,0 +1,5 @@
+*~
+*.log
+*.orig
+dist/
+cookbooks/
