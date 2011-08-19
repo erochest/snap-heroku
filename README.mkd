@@ -1,0 +1,4 @@
+
+This installs a [Snap](http://snapframework.com/) web app on
+[Heroku](http://www.heroku.com/).
+
