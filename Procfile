@@ -1,1 +1,1 @@
-web: run
+web: ./run
