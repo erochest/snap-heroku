@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cabal build
+strip -p --strip-unneeded --remove-section=.comment -o ./snappy ./dist/build/snappy/snappy
+
