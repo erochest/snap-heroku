@@ -1,2 +1,2 @@
 #!/bin/sh
-./snappy -p 8000 +RTS -N4
+./snappy -p $PORT +RTS -N4
