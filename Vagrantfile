@@ -24,8 +24,8 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ['cookbooks/opscode',
-                           'cookbooks/slab',
-                           'cookbooks/err']
+                           'cookbooks/scholarslab',
+                           'cookbooks/erochest']
 
     chef.add_recipe 'haskell'
     chef.add_recipe 'tmux'

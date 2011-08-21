@@ -2,6 +2,7 @@
 require 'vagrant'
 require 'fileutils'
 
+COOKBOOKS = %w{opscode scholarslab erochest}
 BROKEN_RECIPES = %w{opscode/windows opscode/firewall}
 
 task :default => :usage
@@ -15,8 +16,9 @@ desc 'Down the cookbooks needed to provision everything.'
 task :cookbooks do
   Dir.mkdir('cookbooks') unless File.directory?('cookbooks')
 
-  system('git clone https://github.com/opscode/cookbooks.git cookbooks/opscode')
-  system('git clone https://github.com/scholarslab/cookbooks.git cookbooks/slab')
+  COOKBOOKS.each do |user|
+    system("git clone https://github.com/#{user}/cookbooks.git cookbooks/#{user}")
+  end
 
   BROKEN_RECIPES.each do |recipe|
     if File.directory?("cookbooks/#{recipe}")
@@ -34,7 +36,7 @@ end
 
 desc 'Cleans everything out of the environment.'
 task :clobber do
-  FileUtils.rmtree %w{cookbooks slab-cookbooks}, :verbose => true
+  FileUtils.rmtree %w{cookbooks}, :verbose => true
   puts 'vagrant destroy'
   env = Vagrant::Environment.new
   env.cli('destroy')
