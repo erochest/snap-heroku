@@ -10,8 +10,10 @@ module Application
   , applicationInitializer
   ) where
 
+import qualified Data.ByteString.Char8 as B
 import           Snap.Extension
 import           Snap.Extension.Heist.Impl
+import           Snap.Extension.Session.CookieSession
 import           Snap.Extension.Timer.Impl
 
 
@@ -30,6 +32,7 @@ type Application = SnapExtend ApplicationState
 data ApplicationState = ApplicationState
     { templateState :: HeistState Application
     , timerState    :: TimerState
+    , sessionState  :: CookieSessionState
     }
 
 
@@ -46,6 +49,10 @@ instance HasTimerState ApplicationState where
 
 
 ------------------------------------------------------------------------------
+instance HasCookieSessionState ApplicationState where
+    getCookieSessionState = sessionState
+
+------------------------------------------------------------------------------
 -- | The 'Initializer' for ApplicationState. For more on 'Initializer's, see
 -- the documentation from the snap package. Briefly, this is used to
 -- generate the 'ApplicationState' needed for our application and will
@@ -55,4 +62,6 @@ applicationInitializer :: Initializer ApplicationState
 applicationInitializer = do
     heist <- heistInitializer "resources/templates" id
     timer <- timerInitializer
-    return $ ApplicationState heist timer
+    cs    <- cookieSessionStateInitializer $ defCookieSessionState
+        { csCookieName = B.pack "snappy-session" }
+    return $ ApplicationState heist timer cs

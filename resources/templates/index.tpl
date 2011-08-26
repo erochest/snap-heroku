@@ -27,6 +27,10 @@
           <td><current-time/></td>
         </tr>
       </table>
+
+      <div>
+      	<a href="/session/">Session</a> example.
+      </div>
     </div>
   </body>
 </html>
