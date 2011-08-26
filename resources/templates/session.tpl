@@ -18,7 +18,7 @@
       <form method="GET" action="/session/">
         <div>
           <label for="key">Key</label>
-          <input name="key" id="key" type="text" />
+          <input name="key" id="key" type="text" autofocus='autofocus' />
         </div>
         <div>
           <label for="value">Value</label>
