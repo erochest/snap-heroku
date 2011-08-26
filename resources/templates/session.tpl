@@ -29,7 +29,7 @@
         </div>
       </form>
       <div>
-        <a href="../">Back</a>
+        <a href="/session/clear">Blast the session!</a> — <a href="../">Back</a>
       </div>
     </div>
   </body>

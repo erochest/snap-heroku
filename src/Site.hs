@@ -74,6 +74,14 @@ listSession = do
 
 
 ------------------------------------------------------------------------------
+-- | This clears the sessions.
+blastSession :: Application ()
+blastSession = do
+    clearSession
+    redirect $ B.pack "/session/"
+
+
+------------------------------------------------------------------------------
 -- | This loops over the session values.
 sessionVals :: Session -> Splice Application
 sessionVals session = do
@@ -100,8 +108,9 @@ sessionVals session = do
 ------------------------------------------------------------------------------
 -- | The main entry point handler.
 site :: Application ()
-site = route [ ("/",            index)
-             , ("/echo/:stuff", echo)
-             , ("/session/",    listSession)
+site = route [ ("/",              index)
+             , ("/echo/:stuff",   echo)
+             , ("/session/",      listSession)
+             , ("/session/clear", blastSession)
              ]
        <|> serveDirectory "resources/static"
